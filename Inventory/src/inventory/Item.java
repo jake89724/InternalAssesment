@@ -15,7 +15,9 @@ public class Item <T>{
     String contents;
     private String name;
     private int storageNumber;
-    public Item(int storageNumber, String contents){
+    public Item(int storageNumber, String contents, T object){
+        this.object = object;
+        System.out.println(object + " <-- object");
         this.storageNumber = storageNumber;
         this.contents = contents;
         System.out.println(contents);
