@@ -85,7 +85,7 @@ public class Canvas extends JPanel {
         drawShapes(g);
         //checks if button was pressed and adds new square to canvas
         if (check) {
-            squares.add(new Rectangle(random(1, 500), random(1, 500), 100, 100));
+            squares.add(new Rectangle(random(1, 500), random(1, 500), 50, 50));
 
             System.out.println("here");
             check = false;
@@ -96,13 +96,16 @@ public class Canvas extends JPanel {
     public void drawShapes(Graphics g){
         for (int i = 0; i < squares.size(); i++) {
             Rectangle temp = new Rectangle(squares.get(i));
-            g.fillRect((int) temp.getX(), (int) temp.getY(), 50, 50);
+            g.fillRect((int) temp.getX(), (int) temp.getY(),
+                    (int)squares.get(i).getWidth(), (int)squares.get(i).getHeight());
             //creates the selected object graphics
             if(i == indexOfSelected){
                  Graphics2D g2 = (Graphics2D) g;
                 g2.setColor(Color.cyan);
                 g2.setStroke(new BasicStroke(3));
-                g2.drawRect((int) temp.getX(), (int)temp.getY(), 50, 50);
+                g2.drawRect((int) temp.getX(), (int)temp.getY(),
+                        (int)squares.get(i).getWidth(),
+                        (int)squares.get(i).getHeight());
                 //create 4 dots that let you resize the square
                 resizeShape(g2);
                
@@ -135,27 +138,28 @@ public class Canvas extends JPanel {
     private void resizeShape(Graphics2D g) {
         //create 4 points 
         g.setColor(Color.red);
-        Rectangle selected = new Rectangle(squares.get(indexOfSelected));
-        Point left = new Point((int)selected.getX() - 10, (int)selected.getY() + 20);
-        Point right = new Point((int)selected.getX() + 50, (int)selected.getY() + 20);
-        Point up = new Point((int)selected.getX()+ 20, (int)selected.getY() - 10);
-        Point down = new Point((int)selected.getX()+ 20, (int)selected.getY() + 50);
-        points = new Point[3];
-//        points[0] = left;
-//        points[1] = right;
-//        points[2] = up;
-//        points[3] = down;
+        int index = indexOfSelected;
+        Rectangle selected = new Rectangle(squares.get(index));
+        Point left = new Point((int)selected.getX() - 10, (int)selected.getY() + (int)selected.getWidth()/2 - 5);
+        Point right = new Point((int)selected.getX() + (int)selected.getWidth(), (int)selected.getY() + (int)selected.getWidth()/2 - 5);
+        Point up = new Point((int)selected.getX() + (int)selected.getWidth()/2 - 5, (int)selected.getY() - 5);
+        Point down = new Point((int)selected.getX() + (int)selected.getWidth()/2 - 5, (int)selected.getY() + (int)selected.getHeight());
+        points = new Point[4];
+        points[0] = left;
+        points[1] = right;
+        points[2] = up;
+        points[3] = down;
         
         //temp 
-        g.fillOval(left.x, left.y, 10, 10);
-        g.fillOval(right.x, right.y, 10, 10);
-        g.fillOval(up.x, up.y, 10, 10);
-        g.fillOval(down.x, down.y, 10, 10);
+//        g.fillOval(left.x, left.y, 10, 10);
+//        g.fillOval(right.x, right.y, 10, 10);
+//        g.fillOval(up.x, up.y, 10, 10);
+//        g.fillOval(down.x, down.y, 10, 10);
     //array stuf not working figure out
-//        for (int i = 0; i < points.length; i++) {
-//            g.fillOval(points[i].x, points[i].y, 10, 10);
-//            
-//        }
+        for (int i = 0; i < points.length; i++) {
+            g.fillOval(points[i].x, points[i].y, 10, 10);
+            
+        }
         g.setStroke(new BasicStroke(0.5f));
         g.drawLine(left.x - 20, left.y + 5, right.x + 20, right.y + 5);
         g.drawLine(up.x + 5, up.y - 20, down.x + 5, down.y + 20);

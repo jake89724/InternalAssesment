@@ -22,29 +22,38 @@ public class MouseController implements MouseMotionListener, MouseListener {
     int number = 1;
 
     public MouseController() {
+        
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
         //create a rectangle at mouse position 
         //check using the .intesect method
-
+        Resize resize = new Resize();
         Rectangle mousePos = new Rectangle(e.getX(), e.getY(), 1, 1);
-//        Rectangle [] pointPos = new Rectangle[3];
-//        for (int i = 0; i < Canvas.points.length; i++) {
-//            pointPos[i] = new Rectangle(
-//                    Canvas.points[i].x, 
-//                    Canvas.points[i].y, 
-//                    10, 10
-//            );
-//            if(mousePos.intersects(pointPos[i])){
-//                if(i == 0){
-//                    
-//                }
-//                
-//                //Canvas.squares.get(Canvas.indexOfSelected).setSize(, i);
-//            }
-//        }
+        try{
+            Rectangle [] pointPos = new Rectangle[4];
+            for (int i = 0; i < Canvas.points.length; i++) {
+            
+            pointPos[i] = new Rectangle(
+                    Canvas.points[i].x, 
+                    Canvas.points[i].y, 
+                    10, 10
+            );
+            
+            if(mousePos.intersects(pointPos[i])){
+                if(i == 0){
+                    resize.reSizeLeft(mousePos);
+                }
+                //Canvas.squares.get(Canvas.indexOfSelected).setSize(, i);
+            }
+        }
+        }catch(NullPointerException j){
+            
+        }
+       
+        
+        
         
         for (int i = 0; i < Canvas.squares.size(); i++) {
             if (mousePos.intersects(Canvas.squares.get(i))) {

@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/lazyf/OneDrive/Desktop/Inventory/src/visual/UI.java</file>
-            <file>file:/C:/Users/lazyf/OneDrive/Desktop/Inventory/src/inventory/Inventory.java</file>
-            <file>file:/C:/Users/lazyf/OneDrive/Desktop/Inventory/src/controller/MouseController.java</file>
-            <file>file:/C:/Users/lazyf/OneDrive/Desktop/Inventory/src/visual/Canvas.java</file>
-            <file>file:/C:/Users/lazyf/OneDrive/Desktop/Inventory/src/items/Square.java</file>
-            <file>file:/C:/Users/lazyf/OneDrive/Desktop/Inventory/src/controller/Point.java</file>
+            <file>file:/C:/Users/j.head/Desktop/Inventory/src/controller/MouseController.java</file>
+            <file>file:/C:/Users/j.head/Desktop/Inventory/src/controller/Resize.java</file>
+            <file>file:/C:/Users/j.head/Desktop/Inventory/src/visual/UI.java</file>
+            <file>file:/C:/Users/j.head/Desktop/Inventory/src/visual/Canvas.java</file>
         </group>
     </open-files>
 </project-private>
