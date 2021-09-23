@@ -17,7 +17,7 @@ import visual.Canvas;
  *
  * @author j.head
  */
-public class MouseController implements MouseMotionListener {
+public class MouseController implements MouseMotionListener, MouseListener {
 
     int number = 1;
 
@@ -28,27 +28,71 @@ public class MouseController implements MouseMotionListener {
     public void mouseDragged(MouseEvent e) {
         //create a rectangle at mouse position 
         //check using the .intesect method
-        Rectangle mousePos = new Rectangle(e.getX(), e.getY(), 1, 1);
 
-       // System.out.println(e.getX() + " : " + e.getY());
-        for (int i = 0; i < Canvas.squares.size(); i++) {
-//            Rectangle temp = new Rectangle(Canvas.squares.get(i));
-//            if(e.getX() < temp.getX() + temp.getWidth()  && e.getX() > temp.getX()){
+        Rectangle mousePos = new Rectangle(e.getX(), e.getY(), 1, 1);
+//        Rectangle [] pointPos = new Rectangle[3];
+//        for (int i = 0; i < Canvas.points.length; i++) {
+//            pointPos[i] = new Rectangle(
+//                    Canvas.points[i].x, 
+//                    Canvas.points[i].y, 
+//                    10, 10
+//            );
+//            if(mousePos.intersects(pointPos[i])){
+//                if(i == 0){
+//                    
+//                }
 //                
+//                //Canvas.squares.get(Canvas.indexOfSelected).setSize(, i);
 //            }
+//        }
+        
+        for (int i = 0; i < Canvas.squares.size(); i++) {
             if (mousePos.intersects(Canvas.squares.get(i))) {
                 Canvas.squares.get(i).setLocation((int)mousePos.x - 25, (int) mousePos.y - 25);
             }
 
         }
-       // System.out.println("hi " + number);
-        number++;
-
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        
     }
+
+    @Override
+    public void mouseClicked(MouseEvent e) { 
+        Rectangle mousePos = new Rectangle(e.getX(), e.getY(), 1, 1);
+        boolean touching = false;
+        for (int i = 0; i < Canvas.squares.size(); i++) {
+            number++;
+            if (mousePos.intersects(Canvas.squares.get(i))) {
+                System.out.println("on block");
+                Canvas.indexOfSelected = i;
+                touching = true;
+            }
+            
+        }
+        if(!touching){
+            Canvas.indexOfSelected = - 1;
+        }
+        
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
+
 
 }

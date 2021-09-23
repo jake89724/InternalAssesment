@@ -25,6 +25,7 @@ public class Inventory {
       //  UI ui = new UI();
         //Storage storage = new Storage();
         Canvas canvas = new Canvas();
+     
         
        
     }
