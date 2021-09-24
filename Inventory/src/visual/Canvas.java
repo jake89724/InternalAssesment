@@ -9,6 +9,7 @@ import controller.MouseController;
 import controller.Point;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -32,12 +33,13 @@ public class Canvas extends JPanel {
     public static Rectangle select = new Rectangle();
     
     boolean check = false;
-    JFrame frame = new JFrame("Canvas");
+    public JFrame frame = new JFrame("Canvas");
     //the index of the selected object for graphcis to highlight
     public static int indexOfSelected = -1; //-1 is impossible numebr
     //the points ofresixable dots
     public static Point [] points;
-
+    //cursor for resizing
+    public static Cursor cursor = new Cursor(Cursor.DEFAULT_CURSOR);
     public Canvas() {
 
      
@@ -64,6 +66,9 @@ public class Canvas extends JPanel {
         btnAddButton.setBounds(100, frame.getHeight() - 150, 120, 50);
 
         timer();
+        
+        
+        frame.setCursor(cursor);
 
         btnAddButton.addActionListener(new ActionListener() {
             @Override
@@ -140,8 +145,8 @@ public class Canvas extends JPanel {
         g.setColor(Color.red);
         int index = indexOfSelected;
         Rectangle selected = new Rectangle(squares.get(index));
-        Point left = new Point((int)selected.getX() - 10, (int)selected.getY() + (int)selected.getWidth()/2 - 5);
-        Point right = new Point((int)selected.getX() + (int)selected.getWidth(), (int)selected.getY() + (int)selected.getWidth()/2 - 5);
+        Point left = new Point((int)selected.getX() - 10, (int)selected.getY() + (int)selected.getHeight()/2 - 5);
+        Point right = new Point((int)selected.getX() + (int)selected.getWidth(), (int)selected.getY() + (int)selected.getHeight()/2 - 5);
         Point up = new Point((int)selected.getX() + (int)selected.getWidth()/2 - 5, (int)selected.getY() - 5);
         Point down = new Point((int)selected.getX() + (int)selected.getWidth()/2 - 5, (int)selected.getY() + (int)selected.getHeight());
         points = new Point[4];
@@ -164,12 +169,14 @@ public class Canvas extends JPanel {
         g.drawLine(left.x - 20, left.y + 5, right.x + 20, right.y + 5);
         g.drawLine(up.x + 5, up.y - 20, down.x + 5, down.y + 20);
         //attempt to create a diagonal line
-        g.drawLine(left.x - 20, down.y + 30, up.y - 30, right.x + 20);
+      //  g.drawLine(left.x - 20, down.y + 30, up.y - 30, right.x + 20);
         g.setStroke(new BasicStroke(1));
         g.setColor(Color.black);
         
         //have grid on off toggle??
         //resizable
     }
-
+    public static void setCursor(Cursor cursor){
+        
+    }
 }

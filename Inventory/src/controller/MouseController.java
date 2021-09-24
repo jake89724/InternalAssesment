@@ -54,10 +54,12 @@ public class MouseController implements MouseMotionListener, MouseListener {
        
         
         
-        
+      
         for (int i = 0; i < Canvas.squares.size(); i++) {
+            
             if (mousePos.intersects(Canvas.squares.get(i))) {
-                Canvas.squares.get(i).setLocation((int)mousePos.x - 25, (int) mousePos.y - 25);
+                Rectangle temp  = new Rectangle(Canvas.squares.get(i));
+                Canvas.squares.get(i).setLocation((int)mousePos.x - (int)temp.getWidth()/2, (int) mousePos.y - (int)temp.getHeight()/2);
             }
 
         }
@@ -93,6 +95,7 @@ public class MouseController implements MouseMotionListener, MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        System.out.println("release");
     }
 
     @Override
