@@ -7,6 +7,7 @@ package visual;
 
 import controller.MouseController;
 import controller.Point;
+import items.Square;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -56,7 +57,7 @@ public class Canvas extends JPanel {
         frame.add(this);
         //frame.setLayout(null);
         //this.setLayout(null);
- 
+        
         JButton btnAddButton = new JButton("New Square");
         btnAddButton.setLayout(null);
         this.setLayout(null);
@@ -64,10 +65,19 @@ public class Canvas extends JPanel {
         btnAddButton.setLayout(null);
 
         btnAddButton.setBounds(100, frame.getHeight() - 150, 120, 50);
-
+        
+        JButton btnClose = new JButton("Close");
+        btnClose.setLayout(null);
+        this.add(btnClose);
+        btnClose.setBounds(250, frame.getHeight() - 150, 120, 50);
         timer();
         
-        
+         btnClose.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                closeCanvas();
+            }
+        });
         frame.setCursor(cursor);
 
         btnAddButton.addActionListener(new ActionListener() {
@@ -176,7 +186,13 @@ public class Canvas extends JPanel {
         //have grid on off toggle??
         //resizable
     }
-    public static void setCursor(Cursor cursor){
-        
-    }
+    
+     private void closeCanvas() {
+         for (int i = 0; i < squares.size(); i++) {
+             
+         }
+         
+         System.exit(0);
+     }
+   
 }

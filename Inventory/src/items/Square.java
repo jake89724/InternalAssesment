@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  *
  * @author j.head
  */
-public class Square {
+public class Square extends Shape{
     Rectangle rectangle;
     JPanel panel;
     Graphics g;
@@ -21,16 +21,13 @@ public class Square {
     int width;
     int x;
     int y;
-    public Square(){
-        rectangle = new Rectangle(50, 50, 100, 100);
+    public Square(Rectangle rectangle){
+        this.rectangle = rectangle;
+        x = (int)rectangle.getX();
+        y = (int)rectangle.getY();
     }
     
     public Rectangle getRect(){
         return rectangle;
-    }
-    
-    public void paintComponent(Graphics g){
-        panel.paintComponents(g);
-        g.drawRect(50, 50, 100, 100);
     }
 }

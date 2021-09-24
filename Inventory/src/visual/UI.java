@@ -54,7 +54,7 @@ public class UI extends JPanel{
     }
     public void paintComponent(Graphics g){
         this.paintComponent(g);
-        Square square = new Square();
+      //  Square square = new Square();
         Rectangle rect = new Rectangle(50, 50, 50, 50);
         g.drawRect(50, 50,50,50);
     }

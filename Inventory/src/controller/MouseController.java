@@ -19,10 +19,12 @@ import visual.Canvas;
  */
 public class MouseController implements MouseMotionListener, MouseListener {
 
-    int number = 1;
+    Rectangle dragSquare;
+    boolean draggingSquare = false;
+    boolean draggingPoint = false;
 
     public MouseController() {
-        
+        //might move logic to movement class in visual
     }
 
     @Override
@@ -31,62 +33,83 @@ public class MouseController implements MouseMotionListener, MouseListener {
         //check using the .intesect method
         Resize resize = new Resize();
         Rectangle mousePos = new Rectangle(e.getX(), e.getY(), 1, 1);
-        try{
-            Rectangle [] pointPos = new Rectangle[4];
-            for (int i = 0; i < Canvas.points.length; i++) {
-            
-            pointPos[i] = new Rectangle(
-                    Canvas.points[i].x, 
-                    Canvas.points[i].y, 
-                    10, 10
-            );
-            
-            if(mousePos.intersects(pointPos[i])){
-                if(i == 0){
-                    resize.reSizeLeft(mousePos);
+        int indexOfPoint = 0;
+        if (!draggingPoint) {
+            try {
+                Rectangle[] pointPos = new Rectangle[4];
+                for (int i = 0; i < Canvas.points.length; i++) {
+
+                    pointPos[i] = new Rectangle(
+                            Canvas.points[i].x,
+                            Canvas.points[i].y,
+                            10, 10
+                    );
+
+                    if (mousePos.intersects(pointPos[i])) {
+                        if (i == 0) {
+                            draggingPoint = true;
+                            draggingSquare = false;
+                            indexOfPoint = i;
+                        }
+                        //Canvas.squares.get(Canvas.indexOfSelected).setSize(, i);
+                    }
                 }
-                //Canvas.squares.get(Canvas.indexOfSelected).setSize(, i);
+            } catch (NullPointerException j) {
+
             }
         }
-        }catch(NullPointerException j){
-            
-        }
-       
-        
-        
-      
-        for (int i = 0; i < Canvas.squares.size(); i++) {
-            
-            if (mousePos.intersects(Canvas.squares.get(i))) {
-                Rectangle temp  = new Rectangle(Canvas.squares.get(i));
-                Canvas.squares.get(i).setLocation((int)mousePos.x - (int)temp.getWidth()/2, (int) mousePos.y - (int)temp.getHeight()/2);
+
+        if (draggingPoint) {
+            if (indexOfPoint == 0) {
+                resize.reSizeLeft(mousePos);
             }
 
         }
+
+        /*
+         draging logic makes object stay locked to mouse regardless of speed 
+        it also makes it so the squares cannot get stuck together
+         */
+        int indexOfSquare = 0;
+        if (!draggingSquare) {
+            for (int i = 0; i < Canvas.squares.size(); i++) {
+
+                if (mousePos.intersects(Canvas.squares.get(i))) {
+                    dragSquare = new Rectangle(Canvas.squares.get(i));
+                    draggingSquare = true;
+                    indexOfSquare = i;
+                }
+
+            }
+        }
+
+        if (draggingSquare) {
+            Rectangle temp = new Rectangle(dragSquare);
+            Canvas.squares.get(indexOfSquare).setLocation((int) mousePos.x - (int) temp.getWidth() / 2, (int) mousePos.y - (int) temp.getHeight() / 2);
+        }
+
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        
+
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) { 
+    public void mouseClicked(MouseEvent e) {
         Rectangle mousePos = new Rectangle(e.getX(), e.getY(), 1, 1);
         boolean touching = false;
         for (int i = 0; i < Canvas.squares.size(); i++) {
-            number++;
             if (mousePos.intersects(Canvas.squares.get(i))) {
-                System.out.println("on block");
                 Canvas.indexOfSelected = i;
                 touching = true;
             }
-            
+
         }
-        if(!touching){
+        if (!touching) {
             Canvas.indexOfSelected = - 1;
         }
-        
+
     }
 
     @Override
@@ -96,6 +119,8 @@ public class MouseController implements MouseMotionListener, MouseListener {
     @Override
     public void mouseReleased(MouseEvent e) {
         System.out.println("release");
+        draggingSquare = false;
+        draggingPoint = false;
     }
 
     @Override
@@ -105,6 +130,5 @@ public class MouseController implements MouseMotionListener, MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
     }
-
 
 }

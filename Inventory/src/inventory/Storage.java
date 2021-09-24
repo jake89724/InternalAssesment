@@ -6,6 +6,9 @@
  */
 package inventory;
 
+import items.Shape;
+import items.Square;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.LinkedList;
@@ -17,6 +20,8 @@ import java.util.LinkedList;
 public class Storage implements Cloneable{
     public Storage() {
         ArrayList<Item> items = new ArrayList<>();
+        Rectangle[] item = new Rectangle[10];
+        ArrayList<Shape> shapes = new ArrayList<>();
         
        
     }
