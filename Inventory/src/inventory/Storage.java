@@ -17,12 +17,11 @@ import java.util.LinkedList;
  *
  * @author J.head
  */
-public class Storage implements Cloneable{
+public class Storage{
+    public static LinkedList<Square> item1 = new LinkedList<>();
     public Storage() {
         ArrayList<Item> items = new ArrayList<>();
         Rectangle[] item = new Rectangle[10];
-        ArrayList<Shape> shapes = new ArrayList<>();
-        
-       
+  
     }
 }

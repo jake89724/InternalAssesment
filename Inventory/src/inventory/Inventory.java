@@ -22,10 +22,10 @@ public class Inventory {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-         Canvas canvas = new Canvas();
-        //can create and store items -\\
+        //Canvas canvas = new Canvas();
+        //can create and store items -
         
-      //  UI ui = new UI();
+       UI ui = new UI();
         //Storage storage = new Storage();
         
         

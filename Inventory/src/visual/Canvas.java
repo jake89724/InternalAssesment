@@ -7,15 +7,20 @@ package visual;
 
 import controller.MouseController;
 import controller.Point;
+import inventory.Storage;
+import items.Shape;
 import items.Square;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.Stroke;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -34,8 +39,8 @@ public class Canvas extends JPanel {
     public static Rectangle select = new Rectangle();
     
     boolean check = false;
-    public JFrame frame = new JFrame("Canvas");
-    //the index of the selected object for graphcis to highlight
+    public static JFrame frame = new JFrame("Canvas");
+     //the index of the selected object for graphcis to highlight
     public static int indexOfSelected = -1; //-1 is impossible numebr
     //the points ofresixable dots
     public static Point [] points;
@@ -50,15 +55,18 @@ public class Canvas extends JPanel {
             this.addMouseListener(controller);
    
 
-        frame.setSize(500, 700);
+        frame.setSize(700, 700);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.add(this);
+        
+        
         //frame.setLayout(null);
         //this.setLayout(null);
         
         JButton btnAddButton = new JButton("New Square");
+        
         btnAddButton.setLayout(null);
         this.setLayout(null);
         this.add(btnAddButton);
@@ -93,16 +101,27 @@ public class Canvas extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        //fill background color 
+        g.setColor(Color.lightGray);
+        g.fillRect(0, frame.getHeight() - 200, frame.getWidth(), frame.getHeight() - 200);
+        g.setColor(Color.GRAY);
+        g.fillRect(frame.getWidth()-200, 0, frame.getWidth()-200, frame.getHeight() - 200);
+        Graphics2D g2 = (Graphics2D)g;
+        g2.setStroke(new BasicStroke(4));
+        g.setColor(Color.white);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
+        g.drawString("Editor", frame.getWidth()-180, 50);
+        
         g.setColor(Color.black);
         //g.drawString("hi", WIDTH, WIDTH);
         g.drawLine(frame.getWidth(), frame.getHeight() - 200, 0, frame.getHeight() - 200);
+        g.drawLine(frame.getWidth() - 200, 0, frame.getWidth() - 200, frame.getHeight() - 200);
+       
         //draws all squares and selected squares
         drawShapes(g);
         //checks if button was pressed and adds new square to canvas
         if (check) {
             squares.add(new Rectangle(random(1, 500), random(1, 500), 50, 50));
-
-            System.out.println("here");
             check = false;
         }
        
@@ -112,7 +131,7 @@ public class Canvas extends JPanel {
         for (int i = 0; i < squares.size(); i++) {
             Rectangle temp = new Rectangle(squares.get(i));
             g.fillRect((int) temp.getX(), (int) temp.getY(),
-                    (int)squares.get(i).getWidth(), (int)squares.get(i).getHeight());
+            (int)squares.get(i).getWidth(), (int)squares.get(i).getHeight());
             //creates the selected object graphics
             if(i == indexOfSelected){
                  Graphics2D g2 = (Graphics2D) g;
@@ -188,11 +207,16 @@ public class Canvas extends JPanel {
     }
     
      private void closeCanvas() {
+         LinkedList<Square> storeSquares = new LinkedList<>();
          for (int i = 0; i < squares.size(); i++) {
-             
+             storeSquares.add(new Square(squares.get(i)));
          }
-         
-         System.exit(0);
+         UI.frame.setEnabled(true);
+         Storage.item1.clear();
+         Storage.item1 = storeSquares;
+         indexOfSelected = -1;
+         squares.clear();
+         frame.dispose();
      }
    
 }

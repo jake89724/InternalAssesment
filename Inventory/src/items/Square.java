@@ -27,6 +27,18 @@ public class Square extends Shape{
         y = (int)rectangle.getY();
     }
     
+    public int getX(){
+        return x;
+    }
+    public int getY(){
+        return x;
+    }
+    public int getWidth(){
+        return (int)rectangle.getWidth();
+    }
+    public int getHeight(){
+        return (int)rectangle.getHeight();
+    }
     public Rectangle getRect(){
         return rectangle;
     }
