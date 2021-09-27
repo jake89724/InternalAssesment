@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import visual.UI;
@@ -38,6 +39,7 @@ public class Canvas extends JPanel {
     public static Rectangle select = new Rectangle();
     //determines if it's the first launch of canvis
     int counter = 0; // so things don't happen twice
+    
     /**
      * sets frame and declares buttons
      */
@@ -86,7 +88,9 @@ public class Canvas extends JPanel {
             Options options = new Options(this);
             this.add(options.getComboBox());
             Editor editor = new Editor();
-            this.add(editor.getColors());
+            //sets global combo box to the one generated in options
+            Globals.colorEditor = editor.getColors();
+            this.add(Globals.colorEditor);
         }
         counter++;
     }
@@ -104,9 +108,9 @@ public class Canvas extends JPanel {
      * repaints the canvas on a fast timer found in Extra class,
      * for when mouse is dragging objects or resizing...etc.
      */
-    public void repaintCanvas(){
-        repaint();
-    }
+//    public void repaintCanvas(){
+//        repaint();
+//    }
    /**
     * 
     * @param g 
@@ -153,7 +157,7 @@ public class Canvas extends JPanel {
 //         for (int i = 0; i < squares.size(); i++) {
 //             storeSquares.add(new Square(squares.get(i), ));
 //         }
-System.out.println(trueSquares);
+        System.out.println(trueSquares);
         LinkedList<Square> tempSquares = new LinkedList<>();
         tempSquares = trueSquares;
         Globals.shapes.add(new StoreShape("Name" , (new LinkedList(trueSquares))));
@@ -166,5 +170,8 @@ System.out.println(trueSquares);
         Options.colorOfChoice = 0; // resets current color to default
         canvasFrame .dispose(); // disposes the frame
     }
-
+    /**
+     * runs on loop to update user motion for the editor
+     */
+    
 }

@@ -5,6 +5,7 @@
  */
 package extra;
 
+import canvas.Editor;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -44,6 +45,7 @@ public class Extra {
             public void run() {
                 if(Globals.canvasFrame != null){
                     Globals.canvasFrame.repaint();
+                    Editor.timer();
                 }
                 
             }

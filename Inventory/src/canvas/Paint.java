@@ -54,6 +54,8 @@ public class Paint {
         g.setColor(Color.black);
         g.drawLine(canvasFrame .getWidth(), canvasFrame .getHeight() - 200, 0, canvasFrame .getHeight() - 200);
         g.drawLine(canvasFrame .getWidth() - 200, 0, canvasFrame .getWidth() - 200, canvasFrame .getHeight() - 200);
+        //line under editor text
+        g.drawLine(canvasFrame .getWidth() - 200, canvasFrame.getHeight() / 2 - 275, canvasFrame.getWidth(), canvasFrame.getHeight() / 2 - 275);
 
         //draws all squares and selected squares
         drawShapes(g);
@@ -109,10 +111,10 @@ public class Paint {
     public void drawForEditor(Graphics g){ // FOR COMPUTER SCIENCE //////////////
         Graphics2D g2 = (Graphics2D)g;
         g2.setColor(Color.BLACK);
-        g2.setFont(new Font("Times New Romen", Font.BOLD, 12));
+        g2.setFont(new Font("Times New Romen", Font.BOLD, 15));
         g2.setStroke(new BasicStroke(1));
         if(Globals.selected){
-            g2.drawString("Square Number " +  Globals.indexOfSelected, canvasFrame.getWidth() - 150, canvasFrame.getHeight() - 600);
+            g2.drawString("Square Number " +  Globals.indexOfSelected, canvasFrame.getWidth() - 175, canvasFrame.getHeight() - 600);
         }
     }
     

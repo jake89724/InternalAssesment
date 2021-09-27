@@ -44,11 +44,8 @@ public class Options implements ActionListener{
      */
     public void colorSelection(){
         System.out.println("in options");
-        String [] items = new String[3];
-        items[0] = "black";
-        items[1] = "red";
-        items[2] = "yellow";
-        selectColor = new JComboBox(items);
+        
+        selectColor = new JComboBox(Globals.colorChoices);
         System.out.println(selectColor);
         selectColor.setBounds(Globals.canvasFrame .getWidth() / 2 - 100, Globals.canvasFrame.getHeight() - 185, 80, 30);
         System.out.println("options");

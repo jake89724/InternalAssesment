@@ -74,4 +74,7 @@ public class Square extends Shape{
     public Color getColor() {
         return color;
     }
+    public void setColor(Color color){
+        this.color = color;
+    }
 }

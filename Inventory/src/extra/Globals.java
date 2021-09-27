@@ -8,8 +8,10 @@ package extra;
 import controller.Point;
 import items.Shape;
 import items.StoreShape;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.util.LinkedList;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
 /**
@@ -30,5 +32,11 @@ public class Globals {
     public static LinkedList<StoreShape> shapes = new LinkedList<>();
     //checks if a object is selected
     public static boolean selected = false; //default false
+    //used for color editor on canvas
+    public static JComboBox colorEditor = new JComboBox();
+    //Colour Selection 
+    public static String [] colorChoices = {
+        "black", "red", "yellow"
+    };
   
 }
