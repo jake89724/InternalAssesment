@@ -8,20 +8,24 @@ package inventory;
 
 import items.Shape;
 import items.Square;
+import java.awt.Color;
 import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.LinkedList;
 
 /**
- *
+ *stores shapes for inventory
  * @author J.head
  */
 public class Storage{
-    public static LinkedList<Square> item1 = new LinkedList<>();
+    public static LinkedList<Shape> item1 = new LinkedList<>();
     public Storage() {
-        ArrayList<Item> items = new ArrayList<>();
+        
+        
+        
+        Rectangle rec = new Rectangle();
         Rectangle[] item = new Rectangle[10];
-  
+        Shape [] shapes = {
+            new Square(rec, Color.red)
+        };
     }
 }

@@ -6,12 +6,19 @@
 package controller;
 
 /**
- *
+ * holds x and y coordinates
+ * used for the resize points in canvas graphics 
  * @author lazyf
  */
 public class Point {
-    public int x;
-    public int y;
+    
+    public int x; // x coordinate
+    public int y; // y coordinate
+    /**
+     * Holds X and Y Coordinates
+     * @param x x coordinate
+     * @param y y coordinate
+     */
     public Point(int x, int y){
         this.x = x;
         this.y = y;
