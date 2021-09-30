@@ -134,23 +134,36 @@ public class MouseController implements MouseMotionListener, MouseListener {
                 } else {
                     if (mousePos.x > Globals.canvasFrame.getWidth()
                             - 200
-                            - Canvas.squares.get(indexOfSquare).getHeight()
-                            / 2) {
+                            - Canvas.squares.get(indexOfSquare).getWidth()
+                            /2) {
                         //snaps to position if mouse out of bounds
-                        Canvas.squares.get(indexOfSquare).setLocation(
+                        if(mousePos.y < Globals.canvasFrame.getHeight() - 200
+                                - Canvas.squares.get(indexOfSquare).getHeight() / 2){
+                            Canvas.squares.get(indexOfSquare).setLocation(
                                 Globals.canvasFrame.getWidth()
                                 - 200 - (int) Canvas.squares
-                                        .get(indexOfPoint).getWidth(),
+                                        .get(indexOfSquare).getWidth(),
                                 (int) mousePos.y - (int) temp.getHeight() / 2
                         );
+                        }
+                        else{
+                            Canvas.squares.get(indexOfSquare).setLocation(
+                                    Globals.canvasFrame.getWidth() - 200 - (int) Canvas.squares
+                                        .get(indexOfSquare).getWidth(), //y 
+                                    Globals.canvasFrame.getHeight() - 200 - (int) Canvas.squares
+                                        .get(indexOfSquare).getHeight());
+                        }
+                        
+                        
 
                     } else {
                         //snaps on y pos (only other option)
+                        
                         Canvas.squares.get(indexOfSquare).setLocation(
                                 (int) mousePos.x - (int) temp.getWidth() / 2,
                                 Globals.canvasFrame.getHeight() - 200
                                 - (int) Canvas.squares
-                                        .get(indexOfPoint).getHeight()
+                                        .get(indexOfSquare).getHeight()
                         );
                     }
                 }

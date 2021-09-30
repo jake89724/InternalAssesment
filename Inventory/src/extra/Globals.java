@@ -11,6 +11,7 @@ import items.StoreShape;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.util.LinkedList;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
@@ -38,5 +39,6 @@ public class Globals {
     public static String [] colorChoices = {
         "black", "red", "yellow"
     };
+    public static JButton removeButton = new JButton(); // for editor remove button
   
 }

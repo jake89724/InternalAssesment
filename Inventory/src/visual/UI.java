@@ -32,7 +32,9 @@ public class UI extends JPanel{
         JButton btnShowLast = new JButton("Show Shape");
         this.add(btnShowLast);
         btnShowLast.setBounds(100, 10, 125, 25);
-  
+        //sets button bounds again for some reason
+        //I should probably take it out but meh why not leave it in
+        btnButton.setBounds(250, 10, 125, 50);
         //Determines if button is pressed
         btnButton.addActionListener(new ActionListener() {
             @Override
@@ -61,9 +63,7 @@ public class UI extends JPanel{
                 repaint();
             }
         });
-        //sets button bounds again for some reason
-        //I should probably take it out but meh why not leave it in
-              btnButton.setBounds(250, 10, 125, 25);
+        
     }
   /**
    * draws graphics

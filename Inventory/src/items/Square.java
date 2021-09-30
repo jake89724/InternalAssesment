@@ -13,7 +13,7 @@ import java.awt.Rectangle;
  *
  * @author j.head
  */
-public class Square extends Shape{
+public class Square extends Shape implements Shape2D{
 
     Rectangle rectangle; //rectangle of square for bounds
     Color color; //color of square
@@ -36,6 +36,7 @@ public class Square extends Shape{
      * get x
      * @return x coordinate of square 
      */
+    @Override
     public int getX() {
         return x;
     }
@@ -43,6 +44,7 @@ public class Square extends Shape{
      * get y
      * @return y coordinate of square
      */
+    @Override
     public int getY() {
         return x;
     }
@@ -50,6 +52,7 @@ public class Square extends Shape{
      * get width of square
      * @return width of rectangle associated with square
      */
+    @Override
     public int getWidth() {
         return (int) rectangle.getWidth();
     }
@@ -57,6 +60,7 @@ public class Square extends Shape{
      * get height of square
      * @return height of rectangle associated with square
      */
+    @Override
     public int getHeight() {
         return (int) rectangle.getHeight();
     }
@@ -71,10 +75,17 @@ public class Square extends Shape{
      * color of square
      * @return the color of the square
      */
+    @Override
     public Color getColor() {
         return color;
     }
+    /**
+     * sets the color of the square
+     * @param color 
+     */
     public void setColor(Color color){
         this.color = color;
     }
+
+   
 }

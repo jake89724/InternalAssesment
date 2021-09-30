@@ -10,6 +10,8 @@ import controller.Point;
 import extra.Globals;
 import static extra.Globals.canvasFrame;
 import inventory.Storage;
+import items.Circle;
+import items.Shape;
 import items.Square;
 import items.StoreShape;
 import java.awt.BasicStroke;
@@ -38,6 +40,8 @@ public class Canvas extends JPanel {
     //selected rectangle 
     public static Rectangle select = new Rectangle();
     //determines if it's the first launch of canvis
+    public LinkedList<Shape> shapesOfObject = new LinkedList<>();
+    
     int counter = 0; // so things don't happen twice
     
     /**
@@ -56,6 +60,8 @@ public class Canvas extends JPanel {
         canvasFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         canvasFrame.setVisible(true);
         canvasFrame.add(this);
+        canvasFrame.setResizable(false);
+         
         //button for adding squares
         JButton btnAddButton = new JButton("New Square");
         btnAddButton.setLayout(null); //setting null for simplicity
@@ -90,9 +96,17 @@ public class Canvas extends JPanel {
             Editor editor = new Editor();
             //sets global combo box to the one generated in options
             Globals.colorEditor = editor.getColors();
+            Globals.removeButton = editor.getRemoveButton();
             this.add(Globals.colorEditor);
+            this.add(Globals.removeButton);
         }
         counter++;
+        //important logic to remember
+        LinkedList<Shape> shapeTest = new LinkedList<>();
+        shapeTest.add(new Circle());
+        //shapeTest.add(new Square());
+        LinkedList<LinkedList<Shape>> shapetest2 = new LinkedList<>();
+        shapetest2.add(shapeTest);
     }
     /**
      * paints components of canvas
@@ -169,9 +183,7 @@ public class Canvas extends JPanel {
         squares.clear(); // cleares square list of rectangles
         Options.colorOfChoice = 0; // resets current color to default
         canvasFrame .dispose(); // disposes the frame
+        Globals.selected = false;
     }
-    /**
-     * runs on loop to update user motion for the editor
-     */
     
 }

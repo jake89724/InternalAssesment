@@ -114,7 +114,13 @@ public class Paint {
         g2.setFont(new Font("Times New Romen", Font.BOLD, 15));
         g2.setStroke(new BasicStroke(1));
         if(Globals.selected){
+            //displays shape number
             g2.drawString("Square Number " +  Globals.indexOfSelected, canvasFrame.getWidth() - 175, canvasFrame.getHeight() - 600);
+            g2.setFont(new Font("Times New Romen", Font.CENTER_BASELINE, 12));
+            //displays change color text for editor
+            g.drawString("Change Color", canvasFrame.getWidth() - 150, canvasFrame.getHeight()/3 - 85);
+            
+            g.fillRect(canvasFrame.getWidth() - 135, canvasFrame.getHeight() / 2 - 150, 50, 50);    
         }
     }
     

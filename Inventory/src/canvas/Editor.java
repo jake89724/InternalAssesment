@@ -8,10 +8,12 @@ package canvas;
 import extra.Globals;
 import static extra.Globals.canvasFrame;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
-import jdk.nashorn.internal.objects.Global;
+import sun.awt.GlobalCursorManager;
 
 /**
  *
@@ -19,21 +21,38 @@ import jdk.nashorn.internal.objects.Global;
  */
 public class Editor implements ActionListener{
     JComboBox colors = new JComboBox(Globals.colorChoices);
+    JButton btnRemove = new JButton("Remove");
+    int centerOFEditorX = canvasFrame.getWidth() - 100;
+    int centerOfEditorY = canvasFrame.getHeight()/2 - 100;
     public Editor(){
         setEditorOptions();
     }
 
     private void setEditorOptions() {
         
-        colors.setBounds(canvasFrame.getWidth() - 150, canvasFrame.getHeight()/3 - 100, 75, 25);
+        colors.setBounds(centerOFEditorX - 50, centerOfEditorY -85, 75, 25);
         colors.addActionListener(this);
+        //set up remove button
+        btnRemove.setBounds(centerOFEditorX - 60, centerOfEditorY + 200, 100, 25);
+        btnRemove.setVisible(false);
+        btnRemove.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Canvas.squares.remove(Globals.indexOfSelected);
+                Canvas.trueSquares.remove(Globals.indexOfSelected);
+                Globals.indexOfSelected = 0;
+            }
+        });
     }
     public JComboBox getColors(){
         return colors;
     }
+    public JButton getRemoveButton(){
+        return btnRemove; // lsdkjhf;dasklhfj
+    }
     public static void timer(){
-        
         if(Globals.selected){
+            Globals.removeButton.setVisible(true);
             Globals.colorEditor.setVisible(true);
             Color colorDefault = 
             Canvas.trueSquares.get(Globals.indexOfSelected).getColor();
@@ -47,6 +66,7 @@ public class Editor implements ActionListener{
             return;
         }
         Globals.colorEditor.setVisible(false);
+        Globals.removeButton.setVisible(false);
     }
 
     @Override
@@ -60,7 +80,9 @@ public class Editor implements ActionListener{
             Canvas.trueSquares.get(Globals.indexOfSelected).setColor(Color.red);
        }
        else if(colorInput.equals("yellow")){
-           Canvas.trueSquares.get(Globals.indexOfSelected).setColor(Color.red);
+           Canvas.trueSquares.get(Globals.indexOfSelected).setColor(Color.yellow);
        }
+       
     }
+   
 }

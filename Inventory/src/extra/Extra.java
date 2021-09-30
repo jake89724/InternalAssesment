@@ -43,7 +43,7 @@ public class Extra {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if(Globals.canvasFrame != null){
+                if(Globals.canvasFrame != null){System.out.println("in timer");
                     Globals.canvasFrame.repaint();
                     Editor.timer();
                 }

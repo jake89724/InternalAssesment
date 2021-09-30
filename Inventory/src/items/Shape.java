@@ -15,6 +15,8 @@ public class Shape {
     public Shape(){
       
     }
+    
+    
     /**
      * gets the linked list associated with shape
      * @return linked list of the shape
